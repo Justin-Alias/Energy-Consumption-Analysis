@@ -43,7 +43,7 @@ Two business adjustments were applied to the data to reflect realistic consumpti
 | **Tableau Desktop** | Live Snowflake connection and dashboard building |
 
 </div>
----
+
 
 ## Project Structure
 
@@ -81,6 +81,8 @@ AWS S3 Bucket                Snowflake                        Tableau
 **Final table:** `TABLEAU.TABLEAU_DATA.ENERGY_CONSUMPTION`
 **Loaded from:** `s3://tableau.project1.1`
 
+<div align="center">
+
 | Column | Type | Description |
 |---|---|---|
 | `HOUSEHOLD_ID` | string | Unique household identifier |
@@ -96,9 +98,9 @@ AWS S3 Bucket                Snowflake                        Tableau
 | `SUBSIDY_RECEIVED` | string | Whether household received an energy subsidy |
 | `COST_SAVINGS_USD` | float | Cost savings in USD — **adjusted by income level** |
 
-> `MONTHLY_USAGE_KWH` and `COST_SAVINGS_USD` reflect **post-transformation values** — see the transformation rules below.
+</div>
 
----
+> `MONTHLY_USAGE_KWH` and `COST_SAVINGS_USD` reflect **post-transformation values** — see the transformation rules below.
 
 ## Snowflake Setup
 
