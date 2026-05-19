@@ -19,7 +19,6 @@ A Tableau analytics project exploring global household energy consumption patter
   - [Step 5 — Transformations](#step-5--transformations)
 - [Dashboard Breakdown](#dashboard-breakdown)
 - [Key Questions Explored](#key-questions-explored)
-- [How to Run This Project](#how-to-run-this-project)
 
 ---
 
@@ -234,31 +233,3 @@ The **Tableau Dashboard** contains six worksheets organized across two metrics a
 - What is the relationship between income level and cost savings from energy?
 - How does urban vs. rural classification affect consumption patterns?
 - Which regions have seen the highest adoption of renewable energy sources?
-
----
-
-## How to Run This Project
-
-### Prerequisites
-- AWS account with access to the S3 bucket `tableau.project1.1`
-- Snowflake account with the IAM role `arn:aws:iam::195335759238:role/tableau.role` configured
-- Tableau Desktop with the Snowflake connector
-
-### Connection Details
-
-| Parameter | Value |
-|---|---|
-| Server | `suxejkx-lv18180.snowflakecomputing.com` |
-| Warehouse | `COMPUTE_WH` |
-| Database | `TABLEAU` |
-| Schema | `TABLEAU_DATA` |
-| Username | `STUTORIAL` |
-
-### Steps
-
-1. **Run the Snowflake script** — open `SQLQuery.sql` in Snowsight and run all steps in order
-2. **Open the Tableau workbook** — open `Energy_Consumption.twb` in Tableau Desktop
-3. **Re-authenticate** — enter your Snowflake credentials when prompted
-4. **Explore the dashboard** — all six sheets will query live from `ENERGY_CONSUMPTION`
-
-> **Tip:** Switch to an Extract connection (**Data → Extract Data**) if you want a cached local snapshot and faster load times without hitting Snowflake on every refresh.
