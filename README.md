@@ -1,10 +1,10 @@
-# ⚡ Energy Consumption Analysis
+# Energy Consumption Analysis
 
-A Tableau analytics project exploring global household energy consumption patterns — built on a cloud data pipeline from AWS S3 → Snowflake → Tableau, with six interactive worksheets analyzing usage and cost savings across countries, regions, and energy sources.
+A Tableau analytics project exploring global household energy consumption patterns - built on a cloud data pipeline from AWS S3 → Snowflake → Tableau, with six interactive worksheets analyzing usage and cost savings across countries, regions, and energy sources.
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Project Overview](#project-overview)
 - [Tools & Technologies](#tools--technologies)
@@ -32,6 +32,8 @@ Two business adjustments were applied to the data to reflect realistic consumpti
 
 ## Tools & Technologies
 
+<div align="center">
+  
 | Tool | Purpose |
 |---|---|
 | **AWS S3** | Raw data storage (source bucket) |
@@ -40,6 +42,7 @@ Two business adjustments were applied to the data to reflect realistic consumpti
 | **SQL (Snowflake)** | Data loading, table creation, and business-rule transformations |
 | **Tableau Desktop** | Live Snowflake connection and dashboard building |
 
+</div>
 ---
 
 ## Project Structure
@@ -93,7 +96,7 @@ AWS S3 Bucket                Snowflake                        Tableau
 | `SUBSIDY_RECEIVED` | string | Whether household received an energy subsidy |
 | `COST_SAVINGS_USD` | float | Cost savings in USD — **adjusted by income level** |
 
-> ⚠️ `MONTHLY_USAGE_KWH` and `COST_SAVINGS_USD` reflect **post-transformation values** — see the transformation rules below.
+> `MONTHLY_USAGE_KWH` and `COST_SAVINGS_USD` reflect **post-transformation values** — see the transformation rules below.
 
 ---
 
