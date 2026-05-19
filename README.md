@@ -48,8 +48,12 @@ Two business adjustments were applied to the data to reflect realistic consumpti
 ```
 Energy Consumption Analysis/
 │
-├── Energy_Consumption.twb       # Tableau workbook — live Snowflake connection
-└── snowflake_setup.sql          # Full Snowflake setup & transformation script
+├── Workbook
+        ├── Energy_Consumption.twb             # Tableau workbook — live Snowflake connection
+├── SQL
+        ├── SQLQuery.sql                       # Full Snowflake setup & transformation script
+└── Backup Dataset
+        └── Dataset Backup From Snowflake.csv  # A downloaded version of the data as backup if Snowflake isn't working
 ```
 
 > No local data file — the data lives in Snowflake, loaded from S3, and queried live by Tableau.
@@ -96,7 +100,7 @@ AWS S3 Bucket                Snowflake                        Tableau
 
 ## Snowflake Setup
 
-The full setup is in `snowflake_setup.sql`. Here is a breakdown of each step:
+The full setup is in `SQLQuery.sql`. Here is a breakdown of each step:
 
 ### Step 1 — Storage Integration (S3)
 
@@ -252,13 +256,9 @@ The **Tableau Dashboard** contains six worksheets organized across two metrics a
 
 ### Steps
 
-1. **Run the Snowflake script** — open `snowflake_setup.sql` in Snowsight and run all steps in order
+1. **Run the Snowflake script** — open `SQLQuery.sql` in Snowsight and run all steps in order
 2. **Open the Tableau workbook** — open `Energy_Consumption.twb` in Tableau Desktop
 3. **Re-authenticate** — enter your Snowflake credentials when prompted
 4. **Explore the dashboard** — all six sheets will query live from `ENERGY_CONSUMPTION`
 
 > **Tip:** Switch to an Extract connection (**Data → Extract Data**) if you want a cached local snapshot and faster load times without hitting Snowflake on every refresh.
-
----
-
-*Built as part of a Udemy Tableau learning portfolio — demonstrating a full cloud data pipeline: AWS S3 → Snowflake → Tableau.*
