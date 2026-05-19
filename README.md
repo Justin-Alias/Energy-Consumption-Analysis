@@ -176,11 +176,15 @@ Two business-rule adjustments were applied to reflect realistic consumption and 
 
 #### Monthly Usage Adjustments
 
+<div align="center">
+
 | Income Level | Multiplier | Effect |
 |---|---|---|
 | Low | × 1.1 | +10% usage |
 | Middle | × 1.2 | +20% usage |
 | High | × 1.3 | +30% usage |
+
+</div>
 
 ```sql
 UPDATE energy_consumption SET monthly_usage_kwh = monthly_usage_kwh * 1.1 WHERE income_level = 'Low';
@@ -190,11 +194,15 @@ UPDATE energy_consumption SET monthly_usage_kwh = monthly_usage_kwh * 1.3 WHERE 
 
 #### Cost Savings Adjustments
 
+<div align="center">
+
 | Income Level | Multiplier | Effect |
 |---|---|---|
 | Low | × 0.9 | −10% savings |
 | Middle | × 0.8 | −20% savings |
 | High | × 0.7 | −30% savings |
+
+</div>
 
 ```sql
 UPDATE energy_consumption SET cost_savings_usd = cost_savings_usd * 0.9 WHERE income_level = 'Low';
@@ -212,12 +220,18 @@ The **Tableau Dashboard** contains six worksheets organized across two metrics a
 
 ### Metrics
 
+<div align="center">
+
 | Metric | Description |
 |---|---|
 | **KWH** | Transformed monthly energy usage in kilowatt-hours |
 | **CSU** | Consumption Score Unit — normalized energy index |
 
+</div>
+
 ### Sheets
+
+<div align="center">
 
 | Sheet | Description |
 |---|---|
@@ -227,6 +241,8 @@ The **Tableau Dashboard** contains six worksheets organized across two metrics a
 | CSU by Country | Normalized score by country |
 | CSU by Energy Source | Normalized score split by energy type |
 | CSU by Region | Normalized score by region |
+
+</div>>
 
 ---
 
