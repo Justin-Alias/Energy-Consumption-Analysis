@@ -244,8 +244,6 @@ The **Tableau Dashboard** contains six worksheets organized across two metrics a
 
 </div>>
 
----
-
 ## Key Questions Explored
 
 - Which countries and regions have the highest household energy consumption?
