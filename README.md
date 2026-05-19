@@ -12,11 +12,11 @@ A Tableau analytics project exploring global household energy consumption patter
 - [Architecture](#architecture)
 - [Dataset](#dataset)
 - [Snowflake Setup](#snowflake-setup)
-  - [Step 1 — Storage Integration (S3)](#step-1--storage-integration-s3)
-  - [Step 2 — Database & Schema](#step-2--database--schema)
-  - [Step 3 — Staging Table & External Stage](#step-3--staging-table--external-stage)
-  - [Step 4 — Load Data](#step-4--load-data)
-  - [Step 5 — Transformations](#step-5--transformations)
+  - [Step 1 - Storage Integration (S3)](#step-1--storage-integration-s3)
+  - [Step 2 - Database & Schema](#step-2--database--schema)
+  - [Step 3 - Staging Table & External Stage](#step-3--staging-table--external-stage)
+  - [Step 4 - Load Data](#step-4--load-data)
+  - [Step 5 - Transformations](#step-5--transformations)
 - [Dashboard Breakdown](#dashboard-breakdown)
 - [Key Questions Explored](#key-questions-explored)
 
@@ -24,7 +24,7 @@ A Tableau analytics project exploring global household energy consumption patter
 
 ## Project Overview
 
-This project analyzes household energy usage and cost savings across different countries, regions, income levels, and energy sources. The data originates in an **AWS S3 bucket**, is loaded and transformed in **Snowflake**, and is visualized live in **Tableau Desktop** — reflecting a real-world cloud analytics pipeline.
+This project analyzes household energy usage and cost savings across different countries, regions, income levels, and energy sources. The data originates in an **AWS S3 bucket**, is loaded and transformed in **Snowflake**, and is visualized live in **Tableau Desktop** - reflecting a real-world cloud analytics pipeline.
 
 Two business adjustments were applied to the data to reflect realistic consumption and savings behaviour by income bracket before visualization.
 
@@ -38,7 +38,7 @@ Two business adjustments were applied to the data to reflect realistic consumpti
 |---|---|
 | **AWS S3** | Raw data storage (source bucket) |
 | **AWS IAM** | Role-based access control for Snowflake → S3 integration |
-| **Snowflake** | Cloud data warehouse — staging, transformation, final table |
+| **Snowflake** | Cloud data warehouse - staging, transformation, final table |
 | **SQL (Snowflake)** | Data loading, table creation, and business-rule transformations |
 | **Tableau Desktop** | Live Snowflake connection and dashboard building |
 
@@ -51,14 +51,14 @@ Two business adjustments were applied to the data to reflect realistic consumpti
 Energy Consumption Analysis/
 │
 ├── Workbook
-        ├── Energy_Consumption.twb             # Tableau workbook — live Snowflake connection
+        ├── Energy_Consumption.twb             # Tableau workbook - live Snowflake connection
 ├── SQL
         ├── SQLQuery.sql                       # Full Snowflake setup & transformation script
 └── Backup Dataset
         └── Dataset Backup From Snowflake.csv  # A downloaded version of the data as backup if Snowflake isn't working
 ```
 
-> No local data file — the data lives in Snowflake, loaded from S3, and queried live by Tableau.
+> No local data file - the data lives in Snowflake, loaded from S3, and queried live by Tableau.
 
 ---
 
@@ -89,24 +89,24 @@ AWS S3 Bucket                Snowflake                        Tableau
 | `REGION` | string | Geographic region |
 | `COUNTRY` | string | Country name |
 | `ENERGY_SOURCE` | string | Type of energy (Solar, Gas, Coal, etc.) |
-| `MONTHLY_USAGE_KWH` | float | Monthly usage in kWh — **adjusted by income level** |
+| `MONTHLY_USAGE_KWH` | float | Monthly usage in kWh - **adjusted by income level** |
 | `YEAR` | integer | Year of record |
 | `HOUSEHOLD_SIZE` | integer | Number of people in the household |
 | `INCOME_LEVEL` | string | Low / Middle / High |
 | `URBAN_RURAL` | string | Urban or Rural classification |
 | `ADOPTION_YEAR` | integer | Year the energy source was adopted |
 | `SUBSIDY_RECEIVED` | string | Whether household received an energy subsidy |
-| `COST_SAVINGS_USD` | float | Cost savings in USD — **adjusted by income level** |
+| `COST_SAVINGS_USD` | float | Cost savings in USD - **adjusted by income level** |
 
 </div>
 
-> `MONTHLY_USAGE_KWH` and `COST_SAVINGS_USD` reflect **post-transformation values** — see the transformation rules below.
+> `MONTHLY_USAGE_KWH` and `COST_SAVINGS_USD` reflect **post-transformation values** - see the transformation rules below.
 
 ## Snowflake Setup
 
 The full setup is in `SQLQuery.sql`. Here is a breakdown of each step:
 
-### Step 1 — Storage Integration (S3)
+### Step 1 - Storage Integration (S3)
 
 Establishes a secure, role-based connection between Snowflake and the S3 bucket using an AWS IAM role:
 
@@ -120,14 +120,14 @@ CREATE OR REPLACE STORAGE INTEGRATION tableau_Integration
   COMMENT = 'S3 integration for Tableau energy dataset';
 ```
 
-### Step 2 — Database & Schema
+### Step 2 - Database & Schema
 
 ```sql
 CREATE DATABASE tableau;
 CREATE SCHEMA tableau_Data;
 ```
 
-### Step 3 — Staging Table & External Stage
+### Step 3 - Staging Table & External Stage
 
 Creates the raw landing table and points an external stage at the S3 bucket:
 
@@ -152,7 +152,7 @@ CREATE STAGE tableau.tableau_Data.tableau_stage
   STORAGE_INTEGRATION = tableau_Integration;
 ```
 
-### Step 4 — Load Data
+### Step 4 - Load Data
 
 Copies the CSV from S3 into the staging table:
 
@@ -170,7 +170,7 @@ CREATE TABLE energy_consumption AS
   SELECT * FROM tableau_dataset;
 ```
 
-### Step 5 — Transformations
+### Step 5 - Transformations
 
 Two business-rule adjustments were applied to reflect realistic consumption and savings differences by income level.
 
@@ -210,7 +210,7 @@ UPDATE energy_consumption SET cost_savings_usd = cost_savings_usd * 0.8 WHERE in
 UPDATE energy_consumption SET cost_savings_usd = cost_savings_usd * 0.7 WHERE income_level = 'High';
 ```
 
-> **Design rationale:** Higher-income households consume more energy (larger homes, more appliances) but realize proportionally less savings — reflecting diminishing returns on energy efficiency investments at higher consumption levels.
+> **Design rationale:** Higher-income households consume more energy (larger homes, more appliances) but realize proportionally less savings - reflecting diminishing returns on energy efficiency investments at higher consumption levels.
 
 ---
 
@@ -225,7 +225,7 @@ The **Tableau Dashboard** contains six worksheets organized across two metrics a
 | Metric | Description |
 |---|---|
 | **KWH** | Transformed monthly energy usage in kilowatt-hours |
-| **CSU** | Consumption Score Unit — normalized energy index |
+| **CSU** | Consumption Score Unit - normalized energy index |
 
 </div>
 
@@ -243,7 +243,7 @@ The **Tableau Dashboard** contains six worksheets organized across two metrics a
 | CSU by Region | Normalized score by region |
 
 </div>
----
+
 ## Key Questions Explored
 
 - Which countries and regions have the highest household energy consumption?
