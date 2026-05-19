@@ -242,8 +242,8 @@ The **Tableau Dashboard** contains six worksheets organized across two metrics a
 | CSU by Energy Source | Normalized score split by energy type |
 | CSU by Region | Normalized score by region |
 
-</div>>
-
+</div>
+---
 ## Key Questions Explored
 
 - Which countries and regions have the highest household energy consumption?
